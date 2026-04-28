@@ -18,7 +18,9 @@
 package ariba.util.core;
 
 import ariba.util.log.Log;
-import sun.misc.Signal;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
 /**
  * Wrapper around the sun.misc.SignalHandler to avoid having the rest
@@ -31,7 +33,7 @@ import sun.misc.Signal;
  * in which you want them to be invoked.  
  * @aribaapi ariba
  */
-public abstract class SignalHandler implements sun.misc.SignalHandler
+public abstract class SignalHandler
 {        
     /**
      * Registers a new SignalHandler for the given signal name
@@ -75,10 +77,29 @@ public abstract class SignalHandler implements sun.misc.SignalHandler
             return null;
         }
         try {
-            Signal signal = new Signal(signalName);
-            handler._oldHandler = Signal.handle(signal, handler);
+            Class<?> signalClass = Class.forName("sun.misc.Signal");
+            Class<?> signalHandlerClass = Class.forName("sun.misc.SignalHandler");
+            Object signal = signalClass.getConstructor(String.class).newInstance(signalName);
+            
+            Object proxy = Proxy.newProxyInstance(
+                SignalHandler.class.getClassLoader(),
+                new Class<?>[] { signalHandlerClass },
+                new InvocationHandler() {
+                    public Object invoke (Object proxy, Method method, Object[] args) throws Throwable {
+                        if (method.getName().equals("handle")) {
+                            Object sig = args[0];
+                            String name = (String)signalClass.getMethod("getName").invoke(sig);
+                            handler.handleSignal(name, sig);
+                        }
+                        return null;
+                    }
+                }
+            );
+
+            Method handleMethod = signalClass.getMethod("handle", signalClass, signalHandlerClass);
+            handler._oldHandler = handleMethod.invoke(null, signal, proxy);
         }
-        catch (IllegalArgumentException e) {
+        catch (Throwable e) {
             Log.util.warning(9159, handler, signalName, e.getMessage());
             return null;
         }
@@ -93,10 +114,12 @@ public abstract class SignalHandler implements sun.misc.SignalHandler
     public static void raiseSignal (String signalName)
     {
         try {
-            Signal signal = new Signal(signalName);  
-            Signal.raise(signal);
+            Class<?> signalClass = Class.forName("sun.misc.Signal");
+            Object signal = signalClass.getConstructor(String.class).newInstance(signalName);  
+            Method raiseMethod = signalClass.getMethod("raise", signalClass);
+            raiseMethod.invoke(null, signal);
         }
-        catch (IllegalArgumentException e) {
+        catch (Throwable e) {
             Log.util.warning(9160, signalName, e.getMessage());
         }
     }
@@ -104,7 +127,7 @@ public abstract class SignalHandler implements sun.misc.SignalHandler
     /**
      * The previous handler registered for the same signal
      */
-    private sun.misc.SignalHandler _oldHandler;
+    private Object _oldHandler;
     
     /**
      * Specifies whether the previous handler should
@@ -123,24 +146,32 @@ public abstract class SignalHandler implements sun.misc.SignalHandler
     }
     
     /**
-     * Method from the sun's interface which is called to handle a signal.
+     * Method which is called to handle a signal.
      * Our implementation guarantees that if another handler was registered 
      * for the same signal, it will be invoked after this.
      * @aribaapi private
      */
-    public final void handle (Signal signal)
+    final void handleSignal (String name, Object signal)
     {
-        Log.util.info(9161, signal.getName());
+        Log.util.info(9161, name);
         try {
-            handle(signal.getName());
+            handle(name);
         }
         finally {
             // Chain back to previous handler, if one exists
-            if (_followSignalChain && 
-                _oldHandler != SIG_DFL && 
-                _oldHandler != SIG_IGN)
-            {
-                _oldHandler.handle(signal);
+            try {
+                if (_followSignalChain && _oldHandler != null) {
+                    Class<?> signalHandlerClass = Class.forName("sun.misc.SignalHandler");
+                    Object sigDfl = signalHandlerClass.getField("SIG_DFL").get(null);
+                    Object sigIgn = signalHandlerClass.getField("SIG_IGN").get(null);
+                    if (_oldHandler != sigDfl && _oldHandler != sigIgn) {
+                        Method handleMethod = signalHandlerClass.getMethod("handle", Class.forName("sun.misc.Signal"));
+                        handleMethod.invoke(_oldHandler, signal);
+                    }
+                }
+            }
+            catch (Throwable t) {
+                // Ignore
             }
         }        
     }
