@@ -1531,8 +1531,12 @@ public class ResourceService
         Gridtable stringTables = (Gridtable)stringTableProcessors.get(processor);
         Map twinMap;
         Map strings = null;
-        synchronized (stringTables) {
-            twinMap = (Map)stringTables.get(path, locale);
+        if (stringTables != null) {
+            synchronized (stringTables) {
+                twinMap = (Map)stringTables.get(path, locale);
+            }
+        } else {
+            twinMap = null;
         }
 
         if (twinMap != null) {
@@ -1546,14 +1550,16 @@ public class ResourceService
                                      processor,
                                      defaultingLocale,
                                      defaultingSystem);
-            synchronized (stringTables) {
-                    // at this point we may be a client-side ResourceService storing
-                    // a map returned by a server-side ResourceService
-                if (twinMap != null) {
+            if (stringTables != null && twinMap != null) {
+                synchronized (stringTables) {
+                        // at this point we may be a client-side ResourceService storing
+                        // a map returned by a server-side ResourceService
                     stringTables.put(path, locale, twinMap);
                 }
             }
-            strings = (Map)twinMap.get(Constants.getBoolean(defaultingLocale));
+            if (twinMap != null) {
+                strings = (Map)twinMap.get(Constants.getBoolean(defaultingLocale));
+            }
         }
 
         return strings;
@@ -1644,8 +1650,10 @@ public class ResourceService
                                   StringTableProcessor processor)
     {
         Gridtable stringTables = (Gridtable)stringTableProcessors.get(processor);
-        synchronized (stringTables) {
-            stringTables.put(path, locale, stringTable);
+        if (stringTables != null) {
+            synchronized (stringTables) {
+                stringTables.put(path, locale, stringTable);
+            }
         }
     }
 
@@ -1706,6 +1714,9 @@ public class ResourceService
         Assert.that(processor != null,
                     "StringCSVProcessor must not be null for getStringTable");
         Gridtable stringTables = (Gridtable)stringTableProcessors.get(processor);
+        if (stringTables == null) {
+            return null;
+        }
         loadStringsIntoTable(stringBaseURL,
                              stringTables,
                              getSearchDirs(locale, defaultingLocale),

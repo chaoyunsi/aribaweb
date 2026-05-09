@@ -42,7 +42,7 @@ import java.util.List;
     shutdown, etc.).
     @aribaapi ariba
 */
-public class LogManager extends org.apache.log4j.LogManager
+public class LogManager
 {
 
     /**
@@ -311,7 +311,7 @@ public class LogManager extends org.apache.log4j.LogManager
             commonConsole = console;
             addWarningLogHandler(console);
             if (makeRoot) {
-                getRootLogger().addAppender(commonConsole);
+                org.apache.log4j.LogManager.getRootLogger().addAppender(commonConsole);
             }
         }
     }
@@ -357,7 +357,7 @@ public class LogManager extends org.apache.log4j.LogManager
             commonFile = file;
             addWarningLogHandler(file);
             if (makeRoot) {
-                getRootLogger().addAppender(commonFile);
+                org.apache.log4j.LogManager.getRootLogger().addAppender(commonFile);
             }
         }
     }
@@ -559,6 +559,35 @@ public class LogManager extends org.apache.log4j.LogManager
     public static boolean loggingInitialized ()
     {
         return true;
+    }
+
+    /**
+        Returns the root logger.
+        @return Logger the root logger
+        @aribaapi ariba
+    */
+    public static Logger getRootLogger ()
+    {
+        org.apache.log4j.Logger root = org.apache.log4j.LogManager.getRootLogger();
+        if (root instanceof Logger) {
+            return (Logger)root;
+        }
+        return null;
+    }
+
+    /**
+        Check if a logger exists.
+        @param name the logger name
+        @return Logger the logger if it exists, null otherwise
+        @aribaapi ariba
+    */
+    public static Logger exists (String name)
+    {
+        org.apache.log4j.Logger logger = org.apache.log4j.LogManager.exists(name);
+        if (logger instanceof Logger) {
+            return (Logger)logger;
+        }
+        return null;
     }
 }
 

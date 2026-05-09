@@ -638,6 +638,9 @@ abstract public class AWConcreteApplication
 
     public String mainPageName ()
     {
+        if (_mainPageName == null) {
+            _mainPageName = "Main";
+        }
         return _mainPageName;
     }
 
@@ -757,6 +760,9 @@ abstract public class AWConcreteApplication
     */
     public void checkoutHttpSessionId (String sessionId)
     {
+        if (_httpSessionCheckoutManager == null) {
+            _httpSessionCheckoutManager = createHttpSessionCheckoutManager();
+        }
         _httpSessionCheckoutManager.checkout(sessionId);
     }
 
@@ -845,21 +851,28 @@ abstract public class AWConcreteApplication
     ////////////////////////
     protected Class requestContextClass ()
     {
+        if (RequestContextClass == null) {
+            RequestContextClass = AWRequestContext.class;
+        }
         return RequestContextClass;
     }
 
     public AWRequestContext createRequestContext (AWRequest request)
     {
         AWRequestContext requestContext = null;
+        Class requestContextClass = requestContextClass();
+        if (requestContextClass == null) {
+            throw new AWGenericException("Error: RequestContextClass is null. Cannot create request context.");
+        }
         try {
-            requestContext = (AWRequestContext)requestContextClass().newInstance();
+            requestContext = (AWRequestContext)requestContextClass.newInstance();
         }
         catch (IllegalAccessException exception) {
             throw new AWGenericException(exception);
         }
         catch (InstantiationException exception) {
             throw new AWGenericException("Error: cannot create instance of " +
-                    "AWRequestContext class: " + RequestContextClass +
+                    "AWRequestContext class: " + requestContextClass +
                     " exception: ", exception);
         }
         requestContext.init(this, request);
@@ -1034,7 +1047,7 @@ abstract public class AWConcreteApplication
                     ((AWBaseRequest)request).setIsQueued(isCheckedOut);
                 }
                 response = super.dispatchRequest(request);
-                _monitorStats.incrementTotalRequestsServed();
+                if (_monitorStats != null) { _monitorStats.incrementTotalRequestsServed(); }
             }
             if (IsResponseLoggingEnabled) {
                 logResponseMessage(response.contentString());
@@ -1208,6 +1221,9 @@ abstract public class AWConcreteApplication
         // I have made the _componentDefinitionHashtable effectively immutable -- its always copied rather than added to directly
         AWComponentDefinition componentDefinition = null;
         if (componentName != null) {
+            if (_componentDefinitionHashtable == null) {
+                _componentDefinitionHashtable = new GrowOnlyHashtable();
+            }
             componentDefinition = (AWComponentDefinition)_componentDefinitionHashtable.get(componentName);
             if (componentDefinition == null) {
                 synchronized (_componentDefinitionHashtable) {

@@ -722,13 +722,13 @@ public class AWJarWalker
                 String className = _classNamePath.replace("/", ".");
                 // System.out.println("   --  Class: " + className + " - Annotation.. " + s);
                 notifyAnnotationListeners(className, s);
-                return this;
+                return null;
             }
 
             public FieldVisitor visitField(int i, String s, String s1, String s2, Object o)
             {
                 // System.out.println("   --  Field " + s);
-                return this;
+                return null;
             }
 
             public MethodVisitor visitMethod(
@@ -739,7 +739,7 @@ public class AWJarWalker
                 final String[] exceptions)
             {
                 // System.out.println("   --  Method " + name);
-                return this;
+                return null;
             }
 
             public void visitEnd()
@@ -779,8 +779,12 @@ public class AWJarWalker
         }
     }
     
-    public static class Visitor implements ClassVisitor, MethodVisitor, FieldVisitor, AnnotationVisitor
+    public static class Visitor extends ClassVisitor
     {
+        public Visitor() {
+            super(org.objectweb.asm.Opcodes.ASM9);
+        }
+
         public void visit(int i, int i1, String s, String s1, String s2, String[] strings)
         {
 
@@ -798,7 +802,7 @@ public class AWJarWalker
 
         public AnnotationVisitor visitAnnotation(String s, boolean b)
         {
-            return this;
+            return null;
         }
 
         public void visitAttribute(Attribute attribute)
@@ -813,142 +817,17 @@ public class AWJarWalker
 
         public FieldVisitor visitField(int i, String s, String s1, String s2, Object o)
         {
-            return this;
+            return null;
         }
 
         public MethodVisitor visitMethod(int i, String s, String s1, String s2, String[] strings)
         {
-            return this;
+            return null;
         }
 
         public void visitEnd()
         {
 
-        }
-
-        public AnnotationVisitor visitAnnotationDefault()
-        {
-            return this;
-        }
-
-        public AnnotationVisitor visitParameterAnnotation(int i, String s, boolean b)
-        {
-            return this;
-        }
-
-        public void visitCode()
-        {
-
-        }
-
-        public void visitFrame(int i, int i1, Object[] objects, int i2, Object[] objects1)
-        {
-
-        }
-
-        public void visitInsn(int i)
-        {
-
-        }
-
-        public void visitIntInsn(int i, int i1)
-        {
-
-        }
-
-        public void visitVarInsn(int i, int i1)
-        {
-
-        }
-
-        public void visitTypeInsn(int i, String s)
-        {
-
-        }
-
-        public void visitFieldInsn(int i, String s, String s1, String s2)
-        {
-
-        }
-
-        public void visitMethodInsn(int i, String s, String s1, String s2)
-        {
-
-        }
-
-        public void visitJumpInsn(int i, Label label)
-        {
-
-        }
-
-        public void visitLabel(Label label)
-        {
-
-        }
-
-        public void visitLdcInsn(Object o)
-        {
-
-        }
-
-        public void visitIincInsn(int i, int i1)
-        {
-
-        }
-
-        public void visitTableSwitchInsn(int i, int i1, Label label, Label[] labels)
-        {
-
-        }
-
-        public void visitLookupSwitchInsn(Label label, int[] ints, Label[] labels)
-        {
-
-        }
-
-        public void visitMultiANewArrayInsn(String s, int i)
-        {
-
-        }
-
-        public void visitTryCatchBlock(Label label, Label label1, Label label2, String s)
-        {
-
-        }
-
-        public void visitLocalVariable(String s, String s1, String s2, Label label, Label label1, int i)
-        {
-
-        }
-
-        public void visitLineNumber(int i, Label label)
-        {
-
-        }
-
-        public void visitMaxs(int i, int i1)
-        {
-
-        }
-
-        public void visit(String s, Object o)
-        {
-
-        }
-
-        public void visitEnum(String s, String s1, String s2)
-        {
-
-        }
-
-        public AnnotationVisitor visitAnnotation(String s, String s1)
-        {
-            return this;
-        }
-
-        public AnnotationVisitor visitArray(String s)
-        {
-            return this;
         }
     }
 }

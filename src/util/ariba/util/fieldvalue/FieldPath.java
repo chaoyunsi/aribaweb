@@ -235,6 +235,9 @@ public class FieldPath extends Object
                 FieldValue.FieldValueClassExtensionRegistry.get(targetClass);
             _previousClassExtension = fieldValueClassExtension;
         }
+        if (fieldValueClassExtension == null) {
+            return null;
+        }
         return fieldValueClassExtension.getFieldValue(target, this);
     }
 }

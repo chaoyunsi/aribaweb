@@ -701,7 +701,10 @@ public class AWSession extends AWBaseObject
      */
     public boolean registerActiveSession ()
     {
-        _application.monitorStats().incrementActiveSessionCount(this);
+        AWMonitorStats stats = _application.monitorStats();
+        if (stats != null) {
+            stats.incrementActiveSessionCount(this);
+        }
         return true;
     }
 
@@ -710,7 +713,10 @@ public class AWSession extends AWBaseObject
      */
     public boolean unregisterActiveSession ()
     {
-        _application.monitorStats().decrementActiveSessionCount(this);
+        AWMonitorStats stats = _application.monitorStats();
+        if (stats != null) {
+            stats.decrementActiveSessionCount(this);
+        }
         return true;
     }
 
@@ -1491,7 +1497,7 @@ public class AWSession extends AWBaseObject
                 stats.setTabIndex(Integer.toString(requestContext.getTabIndex()));
             }
 
-            _lastAccessedTime = _httpSession.getLastAccessedTime();
+            _lastAccessedTime = (_httpSession != null) ? _httpSession.getLastAccessedTime() : System.currentTimeMillis();
             _updateLatestPerformanceStats = true;
 
             if (_LifecycleListeners != null) {

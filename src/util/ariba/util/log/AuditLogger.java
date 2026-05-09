@@ -337,7 +337,7 @@ public class AuditLogger extends Logger
     /*
         Overrides this method to disallow debug calls.
     */
-    protected void forcedLog (String fqcn,
+    public void forcedLog (String fqcn,
                               Priority level,
                               Object message,
                               Throwable t)

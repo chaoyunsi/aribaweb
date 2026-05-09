@@ -26,6 +26,9 @@ import ariba.util.core.ClassUtil;
 import ariba.util.core.GrowOnlyHashtable;
 
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
@@ -64,7 +67,8 @@ public class AWGroovyLoader extends AWClassLoader.PairedFileLoader
     {
         InputStream sourceStream = sourceResource.inputStream();
         System.out.printf("Loading %s\n", sourceResource.fullUrl());
-        Class cls = gcl().parseClass(sourceStream, sourceResource.relativePath());
+        Reader reader = new InputStreamReader(sourceStream, StandardCharsets.UTF_8);
+        Class cls = gcl().parseClass(reader, sourceResource.relativePath());
         if (cls != null) recordClassForResource(cls.getName(), cls, sourceResource);
     }
 }

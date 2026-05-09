@@ -36,7 +36,7 @@ import javax.servlet.http.HttpSession;
 
 public final class AWComponentActionRequestHandler extends AWConcreteRequestHandler
 {
-    public static boolean IsFormPostRedirectEnabled = true;
+    public static boolean IsFormPostRedirectEnabled = false;
     public static final String SenderKey = "awsn";
     public static final String FormSenderKey = "awsnf";
     public static final String FormComponentIdKey = "awfid";
@@ -982,6 +982,9 @@ public final class AWComponentActionRequestHandler extends AWConcreteRequestHand
             }
         }
         finally {
+            if (requestContext == null) {
+                return response;
+            }
             // record & playback
             _debugDoRecordAndPlayback(requestContext, request, response);
 

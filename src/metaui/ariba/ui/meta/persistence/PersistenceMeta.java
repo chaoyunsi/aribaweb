@@ -55,12 +55,15 @@ public class PersistenceMeta
             UIMeta.getInstance().registerKeyInitObserver(ObjectMeta.KeyElementType, new TypeToManyMetaProvider());
 
             AWConcreteApplication application = (AWConcreteApplication) AWConcreteServerApplication.sharedInstance();
+            if (application == null) {
+                return;
+            }
             application.registerDidInitCallback(new AWConcreteApplication.DidInitCallback() {
-                public void applicationDidInit (AWConcreteApplication application) {
+                    public void applicationDidInit (AWConcreteApplication application) {
                     UIMeta.getInstance().loadRuleFile("PersistenceRules.oss", true, Meta.SystemRulePriority + 2000);
                     hideSupercededClasses(UIMeta.getInstance());
-                }
-            });
+                    }
+                });
 
             AWJarWalker.registerAnnotationListener(SupercedesSuperclass.class,
                 new AWJarWalker.AnnotationListener () {

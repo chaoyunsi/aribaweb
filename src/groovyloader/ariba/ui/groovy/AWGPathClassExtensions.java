@@ -21,8 +21,8 @@ import ariba.util.fieldvalue.FieldPath;
 import ariba.util.fieldvalue.FieldValue;
 import ariba.util.fieldvalue.OrderedList;
 import ariba.util.core.Assert;
-import groovy.util.slurpersupport.GPathResult;
-import groovy.util.slurpersupport.NodeChild;
+import groovy.xml.slurpersupport.GPathResult;
+import groovy.xml.slurpersupport.NodeChild;
 import java.util.ArrayList;
 
 /**

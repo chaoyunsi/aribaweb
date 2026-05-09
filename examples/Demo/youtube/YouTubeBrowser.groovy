@@ -3,6 +3,7 @@ package youtube;
 import ariba.ui.aribaweb.core.AWComponent
 import ariba.ui.table.AWTDisplayGroup
 import ariba.ui.table.AWTCSVDataSource
+import groovy.xml.XmlSlurper
 
 class YouTubeBrowser extends AWComponent
 {

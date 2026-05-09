@@ -145,6 +145,14 @@ public class LoggingEvent extends org.apache.log4j.spi.LoggingEvent
         return messageId;
     }
 
+    /**
+        Override getLoggerName to ensure it never returns null.
+    */
+    public String getLoggerName() {
+        String name = super.getLoggerName();
+        return name != null ? name : "";
+    }
+
     public String getCallerThreadDebugState ()
     {
         return callerThreadDebugState;

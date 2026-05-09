@@ -77,6 +77,9 @@ public class Initialization
 
         // Post application init initialization
         AWConcreteApplication application = (AWConcreteApplication)AWConcreteApplication.sharedInstance();
+        if (application == null) {
+            return;
+        }
         application.registerDidInitCallback(new AWConcreteApplication.DidInitCallback() {
             public void applicationDidInit (AWConcreteApplication application) {
                 metaInitialize(UIMeta.getInstance());

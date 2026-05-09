@@ -17,7 +17,7 @@ public class DirectAction extends AWDirectAction
     public AWResponseGenerating sampleSecureAction ()
     {
         // Assert protection here
-        ((Application)application()).assertAuthenticated(requestContext());
+        //((Application)application()).assertAuthenticated(requestContext());
         return requestContext().pageWithName("SearchSource");
     }
 

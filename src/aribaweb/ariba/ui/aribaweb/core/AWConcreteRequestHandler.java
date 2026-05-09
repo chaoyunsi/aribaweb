@@ -192,6 +192,9 @@ abstract public class AWConcreteRequestHandler extends AWBaseObject implements A
                                               AWRequest request,
                                               AWResponse response)
     {
+        if (requestContext == null || request == null || response == null) {
+            return;
+        }
         String uri = request.uri();
         if (!(uri.indexOf(".gif") != -1)
             && !(uri.indexOf(".js") != -1)

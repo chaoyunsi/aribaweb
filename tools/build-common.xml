@@ -235,6 +235,8 @@
         <include name="core-renderer.jar"/>
         <include name="iText-2.0.8.jar"/>
         <include name="tidy.jar"/>
+        <include name="groovy-xml-*.jar"/>
+        <include name="ariba.expr.jar"/>
     </fileset>
 
     <fileset id="build.deps2" dir="${lib2.dir}">
@@ -328,6 +330,8 @@
     <path id="groovy.classpath">
         <fileset dir="${lib-internal.dir}">
             <include name="groovy-all.jar"/>
+            <include name="groovy-ant-*.jar"/>
+            <include name="groovy-xml-*.jar"/>
         </fileset>
     </path>
 
@@ -1011,8 +1015,8 @@
                 <javac
                         encoding="utf-8"
                         debug="on"
-                        source="1.5"
-                        target="1.5"/>
+                        source="1.8"
+                        target="1.8"/>
             </groovyc>
         </sequential>
     </macrodef>
@@ -1065,6 +1069,8 @@
                 <classpath>
                     <pathelement location="${catalina.home.dir}/bin/bootstrap.jar"/>
                     <pathelement location="${catalina.home.dir}/bin/tomcat-juli.jar"/>
+                    <pathelement location="${aw.home}/lib/ext/jakarta-oro.jar"/>
+                    <pathelement location="${aw.home}/lib/ext/log4j-1.2.15.jar"/>
                 </classpath>
                 <jvmarg value="-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager"/>
                 <jvmarg value="-Djava.util.logging.config.file=${catalina.base.dir}/conf/logging.properties"/>

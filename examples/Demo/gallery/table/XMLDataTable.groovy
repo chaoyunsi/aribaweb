@@ -1,6 +1,7 @@
 package gallery.table
 
 import ariba.ui.aribaweb.core.AWComponent
+import groovy.xml.XmlSlurper
 
 class XMLDataTable extends AWComponent
 {

@@ -235,7 +235,8 @@ public class Logger extends org.apache.log4j.Logger
     public void callAppenders (LoggingEvent event)
     {
         if (useWarningLogHandlers()) {
-            if (event.getLoggerName().equals(this.getName()) &&
+            if (event.getLoggerName() != null && 
+                event.getLoggerName().equals(this.getName()) &&
                 event.getLevel().isGreaterOrEqual(Log.WarnLevel)) {
                 List handlers = LogManager.getWarningLogHandlers();
                 int size = handlers.size();
@@ -343,7 +344,7 @@ public class Logger extends org.apache.log4j.Logger
         @param t throwable object associated with this message
         @aribaapi ariba
     */
-    protected void forcedLog (String fqcn,
+    public void forcedLog (String fqcn,
                               Priority level,
                               Object message,
                               Throwable t)

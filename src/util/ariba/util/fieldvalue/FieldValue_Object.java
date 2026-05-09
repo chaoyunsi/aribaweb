@@ -147,6 +147,9 @@ public class FieldValue_Object extends FieldValue
     */
     public Object getFieldValuePrimitive (Object target, FieldPath fieldPath)
     {
+        if (target == null) {
+            return null;
+        }
         FieldValueGetter getter = fieldPath._previousGetter;
         boolean isAccessorApplicable = (target.getClass() == getter.forClass())
             && getter.isApplicable(target);
