@@ -50,12 +50,12 @@ import java.net.URL;
 import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Map;
-import javax.servlet.ServletConfig;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 /**
-    An {@link ariba.ui.aribaweb.core.AWApplication} for javax.servlet-based applications.
+    An {@link ariba.ui.aribaweb.core.AWApplication} for jakarta.servlet-based applications.
     By default will serve resources from WAR files.
     AWServletApplications use {@link AWServletRequest} for requests and {@link AWServletResponse}
     for responses.

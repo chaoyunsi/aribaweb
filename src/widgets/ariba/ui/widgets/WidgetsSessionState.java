@@ -19,7 +19,7 @@ package ariba.ui.widgets;
 
 import ariba.ui.aribaweb.core.AWComponent;
 import ariba.ui.aribaweb.core.AWRequestContext;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 
 public final class WidgetsSessionState
 {

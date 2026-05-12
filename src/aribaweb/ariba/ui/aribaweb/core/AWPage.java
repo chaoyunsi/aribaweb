@@ -51,7 +51,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TimeZone;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 
 public final class AWPage extends AWBaseObject implements AWDisposable, AWRequestContext._SubcomponentLookup
 {

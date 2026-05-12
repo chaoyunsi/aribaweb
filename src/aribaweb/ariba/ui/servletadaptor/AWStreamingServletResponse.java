@@ -26,7 +26,7 @@ import ariba.ui.servletadaptor.AWServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 
 public final class AWStreamingServletResponse extends AWServletResponse
 {

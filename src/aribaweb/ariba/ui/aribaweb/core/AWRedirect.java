@@ -26,7 +26,7 @@ import ariba.util.core.PerformanceState;
 import ariba.util.core.URLUtil;
 import ariba.util.core.Fmt;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;

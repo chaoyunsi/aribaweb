@@ -18,7 +18,7 @@ package ariba.ui.aribaweb.core;
 
 import ariba.util.core.MapUtil;
 
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 import java.util.Map;
 
 public abstract class AWLocalLoginSessionHandler implements AWSessionValidator

@@ -38,7 +38,12 @@ public class MetaHomePage extends AWComponent implements AWResponseGenerating.Re
 
     public AWResponseGenerating replacementResponse ()
     {
-        return MetaNavTabBar.getState(session()).redirectForPage(this);
+        MetaNavTabBar.State state = MetaNavTabBar.getState(session());
+        // Ensure selected module is initialized before redirecting
+        if (state.getSelectedModule() == null) {
+            return this;
+        }
+        return state.redirectForPage(this);
     }
 
     public String getModule()
@@ -58,6 +63,7 @@ public class MetaHomePage extends AWComponent implements AWResponseGenerating.Re
 
     public String staticPath()
     {
-        return currentModule().name();
+        ariba.ui.meta.core.ItemProperties module = currentModule();
+        return module != null ? module.name() : "Home";
     }
 }

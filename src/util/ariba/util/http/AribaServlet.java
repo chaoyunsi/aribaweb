@@ -25,9 +25,9 @@ import ariba.util.http.multitab.MultiTabHandler;
 import ariba.util.http.multitab.MultiTabUtil;
 import ariba.util.http.multitab.RequestProcessor;
 import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 
 /**

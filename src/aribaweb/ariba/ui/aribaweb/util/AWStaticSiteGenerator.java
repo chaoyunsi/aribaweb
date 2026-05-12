@@ -25,9 +25,8 @@ import ariba.ui.aribaweb.core.AWRedirect;
 import ariba.util.core.Assert;
 import ariba.util.core.URLUtil;
 
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionContext;
-import javax.servlet.ServletContext;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.ServletContext;
 import java.io.File;
 import java.io.InputStream;
 import java.util.Queue;
@@ -387,10 +386,6 @@ public class AWStaticSiteGenerator
 
         public int getMaxInactiveInterval() {
             return 0;
-        }
-
-        public HttpSessionContext getSessionContext() {
-            return null;
         }
 
         public Object getAttribute(String s) {

@@ -32,7 +32,7 @@ import ariba.util.core.StringUtil;
 import ariba.util.core.WrapperRuntimeException;
 import ariba.util.http.multitab.MultiTabSupport;
 
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 
 public final class AWComponentActionRequestHandler extends AWConcreteRequestHandler
 {

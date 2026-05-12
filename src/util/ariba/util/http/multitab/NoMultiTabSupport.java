@@ -20,7 +20,7 @@ package ariba.util.http.multitab;
 
 import ariba.util.core.StringUtil;
 import java.io.IOException;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  This is dummy implementation for the multitab. We can see this as a empty shell that only

@@ -22,8 +22,8 @@ package ariba.util.http.multitab;
 import ariba.util.core.MapUtil;
 import java.io.IOException;
 import java.util.Map;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  Handler for Serving multi-tab request. Once the request is served then is sent for

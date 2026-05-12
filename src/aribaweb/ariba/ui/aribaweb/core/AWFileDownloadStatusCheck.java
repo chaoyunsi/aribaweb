@@ -27,9 +27,9 @@ import ariba.ui.aribaweb.core.AWRequestContext;
 import ariba.ui.aribaweb.core.AWDirectActionUrl;
 import ariba.util.core.StringUtil;
 import ariba.util.core.MapUtil;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionBindingListener;
-import javax.servlet.http.HttpSessionBindingEvent;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSessionBindingListener;
+import jakarta.servlet.http.HttpSessionBindingEvent;
 import java.util.Map;
 
 public class AWFileDownloadStatusCheck extends AWDirectAction

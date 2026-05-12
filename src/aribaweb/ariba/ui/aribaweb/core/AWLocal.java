@@ -31,7 +31,7 @@ import java.lang.reflect.Field;
 import ariba.util.core.MultiKeyHashtable;
 import ariba.util.core.MapUtil;
 
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 
 public final class AWLocal extends AWContainerElement
 {

@@ -22,7 +22,7 @@ package ariba.util.http.multitab;
 
 import ariba.util.core.Assert;
 import java.io.IOException;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  This interface defines a new functionality for MultiTab support. These methods exposes

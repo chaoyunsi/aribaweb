@@ -135,7 +135,7 @@
     <property name="javac.debug" value="on"/>
     <property name="javac.source" value="1.8"/>
     <property name="javac.target" value="1.8"/>
-    <property name="javac.excludes" value=""/>
+    <property name="javac.excludes" value="**/ideplugin/**,**/metaui-jpa/**"/>
 
     <property name="project.name" value="site"/>
     <property name="build.encoding" value="utf-8"/>
@@ -237,6 +237,7 @@
         <include name="tidy.jar"/>
         <include name="groovy-xml-*.jar"/>
         <include name="ariba.expr.jar"/>
+        <include name="jakarta.servlet-api-*.jar"/>
     </fileset>
 
     <fileset id="build.deps2" dir="${lib2.dir}">
@@ -245,7 +246,7 @@
     </fileset>
 
     <fileset id="build-only.deps" dir="${lib-build.dir}">
-        <include name="javax.servlet.zip"/>
+        <include name="jakarta.servlet-api-*.jar"/>
     </fileset>
 
     <!-- Base set for widgets app -->
@@ -267,7 +268,7 @@
         <fileset refid="app.war.jars"/>
     </resources>
 
-    <fileset id="java.src.files" dir="${src.dir}" includes="**/*.java,**/*.groovy"/>
+    <fileset id="java.src.files" dir="${src.dir}" includes="**/*.java,**/*.groovy" excludes="**/ideplugin/**"/>
     <resources id="source.files">
         <fileset refid="java.src.files"/>
         <fileset dir="${src.resource.path}" includes="resource/**/*" erroronmissingdir="false"/>
@@ -290,10 +291,8 @@
     <!-- AW Tools classpath -->
     <path id="aw.tools.classpath">
         <!-- minimal set of AW / Widgets jars -->
-        <fileset dir="${lib-build.dir}">
-            <include name="javax.servlet.zip"/>
-        </fileset>
         <fileset dir="${lib.dir}">
+            <include name="jakarta.servlet-api-*.jar"/>
             <include name="log4j*.jar"/>
             <include name="jakarta-oro.jar"/>
             <include name="asm.jar"/>
@@ -341,7 +340,7 @@
 
         <!-- minimal set of AW / Widgets jars -->
         <fileset dir="${lib-build.dir}">
-            <include name="javax.servlet.zip"/>
+            <include name="jakarta.servlet-api-*.jar"/>
         </fileset>
         <fileset dir="${lib.dir}">
             <include name="log4j*.jar"/>

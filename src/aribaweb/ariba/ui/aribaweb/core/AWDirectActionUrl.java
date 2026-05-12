@@ -28,7 +28,7 @@ import ariba.util.core.Assert;
 import ariba.util.core.Fmt;
 import java.util.Map;
 import java.util.Iterator;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 
 public final class AWDirectActionUrl extends AWBaseObject
 {

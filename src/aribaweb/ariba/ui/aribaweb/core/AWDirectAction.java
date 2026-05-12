@@ -49,7 +49,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 
 abstract public class AWDirectAction extends AWBaseObject
 {

@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.List;
 import java.io.InputStream;
 import java.util.Locale;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 
 public interface AWRequest
 {

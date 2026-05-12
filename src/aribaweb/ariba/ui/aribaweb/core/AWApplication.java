@@ -23,7 +23,7 @@ import ariba.ui.aribaweb.util.AWNodeManager;
 import ariba.ui.aribaweb.util.AWParameters;
 import ariba.util.http.multitab.MaximumTabExceededException;
 import java.util.Map;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 
 /**
     A process wide coordinator of AribaWeb processing.  AWApplication (and its main concrete implementations

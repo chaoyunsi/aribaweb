@@ -214,6 +214,13 @@ public class MetaNavTabBar extends AWComponent
         {
             AWComponent page = pageComponent;
             checkSelectedModule(pageComponent);
+            // Ensure _selectedModule is initialized
+            if (_selectedModule == null && !_modules.isEmpty()) {
+                _selectedModule = _modules.get(0);
+            }
+            if (_selectedModule == null) {
+                return page;
+            }
             UIMeta meta = UIMeta.getInstance();
             Context context = meta.newContext();
             context.push();

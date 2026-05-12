@@ -22,7 +22,7 @@ import ariba.ui.aribaweb.util.AWUtil;
 import ariba.util.core.FastStringBuffer;
 import ariba.util.core.StringUtil;
 
-import javax.servlet.http.Cookie;
+import jakarta.servlet.http.Cookie;
 import java.util.Date;
 import java.util.TimeZone;
 import java.text.SimpleDateFormat;

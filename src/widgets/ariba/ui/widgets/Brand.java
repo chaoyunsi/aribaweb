@@ -25,8 +25,8 @@ import ariba.util.core.GrowOnlyHashtable;
 import ariba.util.core.StringUtil;
 import java.io.File;
 import java.util.Locale;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 public final class Brand
 {

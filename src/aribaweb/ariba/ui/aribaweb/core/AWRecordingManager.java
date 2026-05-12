@@ -36,7 +36,7 @@ import java.io.OutputStream;
 import java.util.Iterator;
 import ariba.ui.aribaweb.util.Log;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 
 public class AWRecordingManager extends AWBaseObject

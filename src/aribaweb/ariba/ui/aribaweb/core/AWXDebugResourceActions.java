@@ -32,7 +32,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Locale;
 import java.util.Map;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 
 public class AWXDebugResourceActions extends AWDirectAction
 {

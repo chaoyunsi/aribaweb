@@ -17,7 +17,7 @@
 
 package ariba.ui.aribaweb.core;
 
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 
 /**
     Used by slave apps to render a page wrapper that was passed in via punchin from

@@ -43,7 +43,7 @@ import ariba.util.core.ListUtil;
 import ariba.util.core.MapUtil;
 import ariba.util.fieldvalue.FieldValue;
 
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;

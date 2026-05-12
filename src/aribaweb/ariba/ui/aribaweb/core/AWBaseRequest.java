@@ -41,7 +41,7 @@ import ariba.util.core.StringArray;
 import ariba.util.core.StringUtil;
 import ariba.util.formatter.IntegerFormatter;
 
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;

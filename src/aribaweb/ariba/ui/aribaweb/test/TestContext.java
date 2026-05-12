@@ -45,7 +45,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 
 
 public class TestContext implements Serializable 

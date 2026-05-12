@@ -63,7 +63,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 
 abstract public class AWConcreteApplication
     extends AWConcreteServerApplication
